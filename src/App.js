@@ -1,5 +1,14 @@
-import { VRButton, XR, Controllers, Hands } from '@react-three/xr'
+import { XR, Hands, VRButton } from '@react-three/xr';
 import { Canvas } from '@react-three/fiber';
+import { useGLTF } from '@react-three/drei';
+import { Suspense } from 'react';
+
+
+function Model(props) {
+  const { scene } = useGLTF('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/paint-brush/model.gltf')
+  return <primitive object={scene} {...props} />
+}
+
 
 function App() {
   return (
@@ -7,12 +16,12 @@ function App() {
       <VRButton />
       <Canvas>
         <XR>
-          <Controllers />
+          <ambientLight />
+          <pointLight position={[10, 10, 10,]} />
+          <Suspense fallback={null}>
+            <Model position={[0, 1.2, -0.5]} />
+          </Suspense>
           <Hands />
-          <mesh>
-            <boxGeometry />
-            <meshBasicMaterial color="blue" />
-          </mesh>
         </XR>
       </Canvas>
     </>
