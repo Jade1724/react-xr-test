@@ -1,6 +1,6 @@
 import { XR, Hands, VRButton } from '@react-three/xr';
 import { Canvas } from '@react-three/fiber';
-import { useGLTF } from '@react-three/drei';
+import { useGLTF, OrbitControls } from '@react-three/drei';
 import { Suspense } from 'react';
 
 
@@ -15,6 +15,7 @@ function App() {
     <>
       <VRButton />
       <Canvas>
+        <OrbitControls />
         <XR>
           <ambientLight />
           <pointLight position={[10, 10, 10,]} />
